@@ -1,12 +1,22 @@
+var _ = require('lodash');
+var requireAll = require('require-all');
 var h = require('react-hyperscript');
 var ReactDOMServer = require('react-dom/server');
-var fs = require('fs');
+var fs = require('fs-extra');
+var less = require('less');
 
-var index = require('./src/Index');
+var rawHtml = fs.readFileSync('./src/templates/index.html', 'utf8');
+var rawLess = fs.readFileSync('./src/styles/index.less', 'utf8');
 
-var html = fs.readFileSync('./src/templates/index.html', 'utf8');
+var pages = requireAll({ dirname: __dirname + '/src/pages' });
 
-html = html.replace('{title}', index.title);
-html = html.replace('{content}', ReactDOMServer.renderToStaticMarkup(h(index.component)));
+less.render(rawLess).then((output) => {
+  var finalCss = output.css;
+  console.log(finalCss);
+}).catch((e) => {
+  console.error(e);
+});
 
-console.log(html);
+// var html = rawHtml
+//   .replace('{title}', index.title)
+//   .replace('{content}', ReactDOMServer.renderToStaticMarkup(h(index.component)));

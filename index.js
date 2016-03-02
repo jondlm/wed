@@ -4,19 +4,46 @@ var h = require('react-hyperscript');
 var ReactDOMServer = require('react-dom/server');
 var fs = require('fs-extra');
 var less = require('less');
+var webpack = require('webpack');
+
+var DIST_DIR = `${__dirname}/dist`;
 
 var rawHtml = fs.readFileSync('./src/templates/index.html', 'utf8');
 var rawLess = fs.readFileSync('./src/styles/index.less', 'utf8');
 
 var pages = requireAll({ dirname: __dirname + '/src/pages' });
 
-less.render(rawLess).then((output) => {
-  var finalCss = output.css;
-  console.log(finalCss);
+less.render(rawLess, { compress: true }).then((output) => {
+  _.forEach(pages, (pageDefinition, pageName) => {
+    var finalHtml = rawHtml
+     .replace('{title}', pageDefinition.title)
+     .replace('{inlineCss}', output.css)
+     .replace('{pageName}', pageName)
+     .replace('{content}', ReactDOMServer.renderToString(h(pageDefinition.component)));
+
+    webpack({
+      entry: `./src/pages/${pageName}.js`,
+      output: {
+        path: DIST_DIR,
+        filename: `${pageName}.js`
+      },
+      externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
+      }
+    }, function(err /* stats */) {
+      if (err) {
+        console.error(err);
+        return err;
+      }
+
+      fs.outputFile(`${DIST_DIR}/${pageName}.html`, finalHtml)
+
+      console.log(`Wrote ${pageName} html and js`);
+    });
+
+  });
 }).catch((e) => {
   console.error(e);
 });
 
-// var html = rawHtml
-//   .replace('{title}', index.title)
-//   .replace('{content}', ReactDOMServer.renderToStaticMarkup(h(index.component)));

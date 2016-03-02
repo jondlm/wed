@@ -1,3 +1,18 @@
-div {
-  background-color: blue;
+@import 'src/styles/normalize';
+
+@page-width: 960px;
+
+@Topbar-height: 80px;
+
+.Topbar {
+  height: @Topbar-height;
+  background: #ccc;
+
+  &-content {
+    padding: 0 10px;
+    padding-top: @Topbar-height * 0.33;
+
+    max-width: @page-width;
+    margin: 0 auto;
+  }
 }

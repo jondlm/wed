@@ -19,17 +19,15 @@ module.exports =
     js_pipeline(files: 'assets/js/*.coffee'),
     css_pipeline(files: 'assets/css/*.styl'),
     contentful(
+      preview: true
       access_token: process.env.ACCESS_KEY
       space_id: 'lcngqe23n7gl'
       content_types:
         posts:
           id: '2wKn6yEnZewu2SCCkus4as'
           template: 'views/_post.jade'
-          # filters: { 'fields.environment[in]': ['staging', 'production'] }
           path: (e) -> "posts/#{e.slug}"
           write: 'posts.json'
-          # sort: compareFunction
-          # transform: transformFunction
         events:
           id: 'events'
           template: 'views/_event.jade'
@@ -50,3 +48,4 @@ module.exports =
 
   locals:
     marked: marked
+    url: 'http://localhost:1111'

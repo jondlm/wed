@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  section.hero
+    div.container
+      div.row
+        div.one-half.column
+          h1 Wedding Events
+          ul
+            for event in contentful.events
+              li
+                a(href='events/#{event.slug}.html')= event.title
+
+          h2 Blog Posts
+          ul
+            for post in contentful.posts
+              li
+                a(href='posts/#{post.slug}.html')= post.title
+

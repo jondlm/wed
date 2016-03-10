@@ -1,25 +1,17 @@
 {
   "name": "wed",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./scripts/dev.sh"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "contentful": "^3.0.7",
-    "fs-extra": "^0.26.5",
-    "gulp": "^3.9.1",
-    "less": "^2.6.0",
-    "lodash": "^4.5.1",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-hyperscript": "^2.2.2",
-    "require-all": "^2.0.0",
-    "webpack": "^1.12.14"
+  "description": "Wedding photography site",
+  "dependencies": {
+    "autoprefixer-stylus": "0.8.x",
+    "axis": "0.5.x",
+    "coffee-script": "^1.0.0",
+    "css-pipeline": "0.3.x",
+    "jade": "^1.0.0",
+    "js-pipeline": "0.2.x",
+    "jstransformer-marked": "^1.0.0",
+    "marked": "0.3.x",
+    "roots-contentful": "0.0.9",
+    "rupture": "0.6.x",
+    "stylus": "0.52.x"
   }
 }

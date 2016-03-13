@@ -1,19 +1,40 @@
 extends layout
 
 block content
-  section.hero
-    div.container
-      div.row
-        div.one-half.column
-          h1 Wedding Events
-          ul
-            for event in contentful.events
-              li
-                a(href='events/#{event.slug}.html')= event.title
+  section
+    form(data-hook='filter-bar', onsubmit='return false;').filter-bar.row
+      div.six.columns
+        input(type='text', data-hook='search', placeholder='Search')
+      div.two.columns
+        select(data-hook='region')
+          option(value='') Region
+          for region in contentful.regions
+            option(value=region.sys.id)= region.name
+      div.two.columns
+        select(data-hook='type')
+          option(value='') Type
+          for eventType in contentful.event_types
+            option(value=eventType.sys.id)= eventType.name
+      div.two.columns
+        select(data-hook='date')
+          option(value='') Date
+          for date in _.chain(contentful.events).map('date').sortBy().map(d => moment(d).format('MMM YYYY')).uniq().value()
+            option(value=date)= date
 
-          h2 Blog Posts
-          ul
-            for post in contentful.posts
-              li
-                a(href='posts/#{post.slug}.html')= post.title
+    ul(data-hook='events').events
+      for event in contentful.events
+        li(data-id='#{event.sys.id}')
+          a.event(href='events/#{event.slug}.html', style='background-image: url(#{event.featuredImage.fields.file.url});')
+            div.event-desc
+              div.row
+                div.nine.columns.event-desc-title
+                  span= event.title
+                div.three.columns.event-desc-date
+                  span= moment(event.date).format('MMM YYYY')
+
+    //- h2 Blog Posts
+    //- ul
+    //-   for post in contentful.posts
+    //-     li
+    //-       a(href='posts/#{post.slug}.html')= post.title
 

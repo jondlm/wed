@@ -9,7 +9,7 @@ html(lang='en')
     meta(name='description', content='description of your site')
     meta(name='author', content='author of the site')
 
-    //- uncomment if your site is responsive!
+    //- Responsive!
     meta(name='viewport' content='width=device-width, initial-scale=1')
 
     title= _path
@@ -20,7 +20,31 @@ html(lang='en')
     link(rel='stylesheet', href='#{url}/css/skeleton.css')
     link(rel='stylesheet', href='#{url}/css/master.css')
 
-  body
-    block content
+    script.
+      window.url        = '#{url}';
+      window.events     = !{JSON.stringify(contentful.events)};
+      window.regions    = !{JSON.stringify(contentful.regions)};
+      window.eventTypes = !{JSON.stringify(contentful.event_types)};
 
+
+  body
+    header.site-header
+      div.container
+        div.row
+          div.site-header-left.eight.columns
+            a.site-title(href='#{url}') Photography Workshops
+          div.site-header-right.four.columns
+            nav.site-nav
+              ul
+                li
+                  a(href='#{url}') Home
+                li
+                  a(href='#{url}/posts.html') Blog
+
+    div.container
+      div.row
+        div.twelve.columns
+          block content
+
+    script(src='#{url}/js/axios.js')
     script(src='#{url}/js/main.js')

@@ -3,8 +3,10 @@ rupture      = require 'rupture'
 autoprefixer = require 'autoprefixer-stylus'
 js_pipeline  = require 'js-pipeline'
 css_pipeline = require 'css-pipeline'
-marked       = require 'marked'
 contentful   = require 'roots-contentful'
+marked       = require 'marked'
+_            = require 'lodash'
+moment       = require 'moment'
 
 module.exports =
   ignores: [
@@ -33,12 +35,25 @@ module.exports =
           template: 'views/_event.jade'
           path: (e) -> "events/#{e.slug}"
           write: 'events.json'
+          sort: (a, b) ->
+            return a.date > b.date
+        regions:
+          id: 'region'
+          write: 'regions.json'
+        event_types:
+          id: 'eventType'
+          write: 'event-types.json'
     ),
   ]
 
   stylus:
     use: [axis(), rupture(), autoprefixer()]
 
+  marked:
+    gfm: true
+
   locals:
+    _: _
     marked: marked
+    moment: moment
     url: 'http://jondlm.github.io/wed'

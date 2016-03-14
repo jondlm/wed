@@ -21,9 +21,9 @@ module.exports =
     js_pipeline(files: 'assets/js/*.coffee', out: 'js/build.js', minify: true, hash: true),
     css_pipeline(files: 'assets/css/*.styl', out: 'css/build.css', minify: true, hash: true)
     contentful(
-      preview: true
       access_token: process.env.ACCESS_KEY
       space_id: 'lcngqe23n7gl'
+      preview: true
       content_types:
         posts:
           id: '2wKn6yEnZewu2SCCkus4as'

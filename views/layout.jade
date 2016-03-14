@@ -15,10 +15,8 @@ html(lang='en')
     title= _path
 
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Raleway:400,300,600')
-
-    link(rel='stylesheet', href='#{url}/css/normalize.css')
     link(rel='stylesheet', href='#{url}/css/skeleton.css')
-    link(rel='stylesheet', href='#{url}/css/master.css')
+    link(rel='stylesheet', href='#{url}/css/build.css?cb=#{cb}')
 
     script.
       window.url        = '#{url}';
@@ -46,5 +44,4 @@ html(lang='en')
         div.twelve.columns
           block content
 
-    script(src='#{url}/js/axios.js')
-    script(src='#{url}/js/main.js')
+    script(src='#{url}/js/build.js?cb=#{cb}')

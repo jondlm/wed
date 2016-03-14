@@ -10,6 +10,7 @@ moment       = require 'moment'
 
 module.exports =
   ignores: [
+    'scripts/*',
     'README.md',
     '**/layout.*',
     '**/_*',
@@ -18,8 +19,8 @@ module.exports =
   ]
 
   extensions: [
-    js_pipeline(files: 'assets/js/*.coffee', out: 'js/build.js', minify: true, hash: true),
-    css_pipeline(files: 'assets/css/*.styl', out: 'css/build.css', minify: true, hash: true)
+    js_pipeline(files: 'assets/js/*.coffee', out: 'js/build.js', minify: true),
+    css_pipeline(files: 'assets/css/*.styl', out: 'css/build.css', minify: true)
     contentful(
       access_token: process.env.ACCESS_KEY
       space_id: 'lcngqe23n7gl'
@@ -57,3 +58,4 @@ module.exports =
     marked: marked
     moment: moment
     url: 'http://jondlm.github.io/wed'
+    cb: Date.now()

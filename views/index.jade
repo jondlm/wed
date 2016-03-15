@@ -18,19 +18,19 @@ block content
       div.two.columns
         select(data-hook='date')
           option(value='') Date
-          for date in _.chain(contentful.events).map('date').sortBy().map(d => moment(d).format('MMM YYYY')).uniq().value()
+          for date in _.chain(contentful.events).map('startDate').sortBy().map(d => moment(d).format('MMM YYYY')).uniq().value()
             option(value=date)= date
 
-    ul(data-hook='events').events
+    ul(data-hook='events').event-list
       for event in contentful.events
         li(data-id='#{event.sys.id}')
-          a.event(href='events/#{event.slug}.html', style='background-image: url(#{event.featuredImage.fields.file.url});')
-            div.event-desc
+          a.event-list-item(href='events/#{event.slug}.html', style='background-image: url(#{event.featuredImage.fields.file.url});')
+            div.event-list-desc
               div.row
-                div.nine.columns.event-desc-title
+                div.nine.columns
                   span= event.title
-                div.three.columns.event-desc-date
-                  span= moment(event.date).format('MMM YYYY')
+                div.three.columns.event-list-date
+                  span= event.startDate ? moment(event.startDate).format('MMM YYYY') : ''
 
     //- h2 Blog Posts
     //- ul

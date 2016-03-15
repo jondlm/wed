@@ -1,6 +1,33 @@
 extends layout
 
 block content
-  h1= entry.title
-  p!= marked(entry.description)
+  article.event
+    h1= entry.title
+    img.event-image(src='#{entry.featuredImage.fields.file.url}', alt='#{entry.featuredImage.fields.title}')
+    article.row
+      section.eight.columns.event-desc!= marked(entry.description)
+      section.four.columns
+        if entry.startDate
+          div.event-metadata
+            h4 Date
+            div.event-dates
+              div.event-dates-date= moment(entry.startDate).format('MM/DD/YYYY')
+              if entry.endDate
+                div.event-dates-to to
+                div.event-dates-date= moment(entry.endDate).format("MM/DD/YYYY")
+        if entry.location || entry.locationDescription
+          div.event-metadata
+            h4 Location
+            if entry.locationDescription
+              div.event-location-desc= entry.locationDescription
+            if entry.location
+              iframe.event-map(
+                frameborder='0',
+                src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAen1x4OGH5Hcu-ngoUD61wvA-bGjw5wWQ&q=#{entry.location.lat},#{entry.location.lon}',
+                allowfullscreen
+              )
+        if entry.link
+          div.event-metadata
+            h4 Website
+            a(href='#{entry.link}')= entry.link
 

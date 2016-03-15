@@ -31,6 +31,8 @@ module.exports =
           template: 'views/_post.jade'
           path: (e) -> "posts/#{e.slug}"
           write: 'posts.json'
+          sort: (a, b) ->
+            return a.date > b.date
         events:
           id: 'events'
           template: 'views/_event.jade'
@@ -41,9 +43,13 @@ module.exports =
         regions:
           id: 'region'
           write: 'regions.json'
+          sort: (a, b) ->
+            return a.name > b.name
         event_types:
           id: 'eventType'
           write: 'event-types.json'
+          sort: (a, b) ->
+            return a.name > b.name
     ),
   ]
 

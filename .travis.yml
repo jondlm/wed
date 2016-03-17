@@ -1,0 +1,8 @@
+script: bash ./scripts/production.sh
+env:
+  global:
+  - GH_REF: github.com/jondlm/wed.git
+  - secure: "QGhFWOWVihZhXj2WTpky9GnLxIk+HVxnB3pqpEToCmjxICMjipiFeapndGB5dwJW0BWQHtlgli/O8wT7JdWXJ0/1G3J7T5PLszP4ARRa9mcI5l06UkQ/fKTkXjdNPiGzKkIKmROkP2Q7ICHk5YDNnLhX6aKOS+PZD65eomMafZCmGMCs7BPe0Ytg5Sl90fBPZjdc0DwFJjP06OgWdbth4XG0NVDSqR9Ty8gHkn/bES3LBlK1eM2sGTqw8lvymr4IWfj1IgADs3BVIVOImLy5GvcjUTXXnnJ5Mv78fHWFEKJtyhqSusPn7W8XL2JKxC6Uu/SUOrrNfuK7srfFsJt8yilC8dJDFxzVkTjhFWoqR4ikXPv5/THGcPbkRwWah/jtFKOfJIwr+6wvRJBFSRfqgKLFGRsAt8E3DutAdly+BTnSgVYlZjwWAo+Ky609QKR5eg+CLpWgmHbLUkdLABMdlZgqIZ0ZOZ/TyjnkuOjOHsH1fXzB1bMQFv8oGfzLUHTX80+1wSuPNvph7gGCHr0zA7TM5uZHbGKy7U6PIqf6GKSQz62QwHlza8X0iEUJjhnkxXVqqYRly0Crh6EYPGnlhfIsk0CNMBxxD/o5ua3+n0jQ2jmOdeJBxoUTk3IHi77Bj7DBfzegIIohxWDwZgg3J/GaVkNYGr2Bk84OCL70/v4="
+language: node_js
+node_js:
+  - "4"

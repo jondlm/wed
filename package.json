@@ -3,6 +3,7 @@
   "description": "Wedding photography site",
   "dependencies": {
     "autoprefixer-stylus": "0.8.x",
+    "roots": "^4.0.1",
     "axis": "0.5.x",
     "coffee-script": "^1.0.0",
     "css-pipeline": "0.3.x",

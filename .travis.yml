@@ -1,3 +1,4 @@
+script: "npm run build"
 env:
   global:
   - GH_REF: github.com/jondlm/wed.git

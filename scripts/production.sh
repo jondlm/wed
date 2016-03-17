@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
-source ./scripts/keys.sh
+if [ -f "./scripts/keys.sh" ]; then
+  source ./scripts/keys.sh
+fi
 
 export ACCESS_KEY=$PREVIEW_ACCESS_KEY
 

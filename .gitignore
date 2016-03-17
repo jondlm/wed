@@ -2,3 +2,4 @@
 node_modules
 public
 scripts/keys.sh
+scripts/travis-build.sh

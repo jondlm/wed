@@ -9,7 +9,7 @@ export ACCESS_KEY=$PREVIEW_ACCESS_KEY
 
 rm -rf public || exit 0;
 
-../node_modules/.bin/roots compile -e production
+roots compile -e production
 
 cd public
 git init

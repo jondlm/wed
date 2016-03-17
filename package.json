@@ -1,6 +1,9 @@
 {
   "name": "wed",
   "description": "Wedding photography site",
+  "scripts": {
+    "build": "./scripts/production.sh"
+  },
   "dependencies": {
     "autoprefixer-stylus": "0.8.x",
     "roots": "^4.0.1",

@@ -1,5 +1,11 @@
 extends layout
 
+block scripts
+  script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.lite.min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/rxjs-dom/7.0.3/rx.dom.min.js')
+  script(src='#{url}/js/events.js?cb=#{cb}')
+
 block content
   section
     form(data-hook='filter-bar', onsubmit='return false;').filter-bar.row
@@ -18,10 +24,12 @@ block content
       div.two.columns
         select(data-hook='date')
           option(value='') Date
-          for date in _.chain(contentful.events).map('startDate').sortBy().map(d => moment(d).format('MMM YYYY')).uniq().value()
+          for date in _.chain(contentful.events).map('startDate').filter(function(d) {return !!d}).sortBy().map(d => moment(d).format('MMM YYYY')).uniq().value()
             option(value=date)= date
 
     ul(data-hook='events').event-list
+      //- DANGER DANGER DANGER
+      //- If you update this code in any way, do the same in the javascript
       for event in contentful.events
         li(data-id='#{event.sys.id}')
           a.event-list-item(href='events/#{event.slug}.html', style='background-image: url(#{event.featuredImage.fields.file.url});')

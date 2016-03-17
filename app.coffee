@@ -19,7 +19,7 @@ module.exports =
   ]
 
   extensions: [
-    js_pipeline(files: 'assets/js/*.coffee', out: 'js/build.js'),
+    js_pipeline(files: 'assets/js/*.coffee'),
     css_pipeline(files: 'assets/css/*.styl', out: 'css/build.css'),
     contentful(
       preview: true

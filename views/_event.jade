@@ -6,7 +6,7 @@ block scripts
 block content
   article.event
     h1= entry.title
-    img.event-image(src='#{entry.featuredImage.fields.file.url}', alt='#{entry.featuredImage.fields.title}')
+    img.event-image(src='#{entry.featuredImage.fields.file.url}?fm=jpg', alt='#{entry.featuredImage.fields.title}')
     article.row
       section.eight.columns.event-desc!= marked(entry.description)
       section.four.columns

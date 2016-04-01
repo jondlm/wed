@@ -32,7 +32,7 @@ block content
       //- If you update this code in any way, do the same in the javascript
       for event in contentful.events
         li(data-id='#{event.sys.id}')
-          a.event-list-item(href='events/#{event.slug}.html', style='background-image: url(#{event.featuredImage.fields.file.url});')
+          a.event-list-item(href='events/#{event.slug}.html', style='background-image: url(#{event.featuredImage.fields.file.url}?fm=jpg&w=400);')
             div.event-list-desc
               div.row
                 div.nine.columns

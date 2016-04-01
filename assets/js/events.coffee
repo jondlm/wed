@@ -13,7 +13,7 @@ isArray = Array.isArray || (value) -> return {}.toString.call(value) is '[object
 renderEvent = (event) ->
   """
   <li data-id="#{event.sys.id}">
-    <a class="event-list-item" href="events/#{event.slug}.html" style="background-image: url(#{event.featuredImage.fields.file.url})">
+    <a class="event-list-item" href="events/#{event.slug}.html" style="background-image: url(#{event.featuredImage.fields.file.url}?fm=jpg&w=400)">
       <div class="event-list-desc">
         <div class="row">
           <div class="nine columns">
